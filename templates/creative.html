@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Creative Dashboard</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  </head>
+  <body>
+
+
+        <div class="visualization">
+          <h3>Negative reviews sorted per airline</h3>
+          <div id="pieChart"></div>
+          <p>(You can hover on a slice to see its global percentage)</p>
+        </div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+        const pieChartDataUrl = "{{ url_for('get_piechart_data_creative') }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/pieChart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/creative.js') }}"></script>
+  </body>
+</html>
