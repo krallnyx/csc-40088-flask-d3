@@ -64,4 +64,5 @@ def get_piechart_data_creative():
     return jsonify(piechart_data)
 
 
-app.run(host='0.0.0.0', port=81)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=81)
