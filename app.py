@@ -16,8 +16,8 @@ cleaned_df_creative = data_df_creative[(data_df_creative['airline_sentiment'] ==
 
 @app.route('/')
 def index():
-    """home page, not in use"""
-    return 'Welcome to Fundamentals of Computer Science CSC40088'
+    """home page,with task2"""
+    return render_template("task2.html")
 
 
 @app.route('/basic')
