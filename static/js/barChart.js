@@ -41,7 +41,7 @@ function d3BarChart(datasetBarChart, group = "All"){
     //Adding barchart title
     bar.append('text')
         .attr('x', (width + margin.left + margin.right)/2)
-        .attr('y', graph_misc.title+2)
+        .attr('y', graph_misc.title)
         .attr('class','title')
         .attr('text-anchor', 'middle')
         .text('Details of global negative reviews');

@@ -90,7 +90,7 @@ function updateBarChart(group = "All", color ="#757077", datasetBarChart, airlin
     //Adding barchart title
     bar.append('text')
         .attr('x', (width + margin.left + margin.right)/2)
-        .attr('y', graph_misc.title+2)
+        .attr('y', graph_misc.title)
         .attr('class','title')
         .attr('text-anchor', 'middle')
         .text('Details of '+ airline + ' negative reviews');
