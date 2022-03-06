@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Creative Dashboard</title>
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <title>Creative Dashboard improved for week8</title>
+    <link href="./static/css/styles.css" rel="stylesheet">
   </head>
   <body>
 
@@ -15,13 +15,18 @@
           <h3>Negative reviews sorted per airline</h3>
           <div id="pieChart"></div>
           <p>(You can hover on a slice to see its global percentage)</p>
+          <br>
+          <div id="barChart"></div>
         </div>
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script>
         const pieChartDataUrl = "{{ url_for('get_piechart_data_creative') }}";
+        const barChartDataUrl = "{{ url_for('get_barchart_data') }}";
     </script>
     <script src="{{ url_for('static', filename='js/pieChart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/barChart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/updateBarChart.js') }}"></script>
     <script src="{{ url_for('static', filename='js/creative.js') }}"></script>
   </body>
 </html>

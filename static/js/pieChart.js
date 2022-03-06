@@ -37,6 +37,7 @@ function d3PieChart(dataset, datasetBarChart){
         .enter()    // creates the initial join of data to elements                       
         .append("svg:g")               
         .attr("class", "slice")
+        .on("click", click);
     				
     arcs.append("svg:path")     // create path element 
         .attr("fill", function(d, i) { return color(i); } )     //Add color to slice
@@ -64,5 +65,9 @@ function d3PieChart(dataset, datasetBarChart){
         .text("Airline")
         .attr("class","title");		    
 
+    // Function to update barchart when a piechart slice is clicked
+    function click(d, i) {
+        updateBarChart(d.data.category, color(i), datasetBarChart);
+     }
 
 }
