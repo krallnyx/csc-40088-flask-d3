@@ -13,14 +13,23 @@
   </head>
   <body>
         <div class="visualization">
-          <p>(The code for this project can be found on my <a href="https://github.com/krallnyx/csc-40088-flask-d3">Github, flask-d3</a>).</p>
-          <h3>Negative reviews sorted per airline</h3>
+          <h3>Negative reviews per airline</h3>
           <div id="pieChart"></div>
-          <p>(You can hover on a slice to see its global percentage and click on it to see the details below)</p>
-          <br>
           <div id="barChart"></div>
+          <ul>
+              <li>BadF: Bad Flight</li>
+              <li>CclF: Cancelled Flight</li>
+              <li>CntT: Can't Tell</li>
+              <li>CSI: Customer Service Issue</li>
+              <li>DmgL: Damaged Luggage</li>
+              <li>FAC: Flight Attendant Complaints</li>
+              <li>FBP: Flight Booking Problems</li>
+              <li>LatF: Late Flight</li>
+              <li>LgLi: longlines</li>
+              <li>Lost: Lost Luggage</li>
+          </ul>
+          <p>(The code for this project can be found on my <a href="https://github.com/krallnyx/csc-40088-flask-d3">Github, flask-d3</a>).</p>
         </div>
-
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script>
         const pieChartDataUrl = "{{ url_for('get_piechart_data_creative') }}";

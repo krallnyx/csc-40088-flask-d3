@@ -17,6 +17,7 @@ data_df_creative = pd.read_csv("static/data/Kaggle_TwitterUSAirlineSentiment.csv
 # removing the lines for airline_sentiment != negative so we can display the reasons it's negative
 cleaned_df_creative = data_df_creative[(data_df_creative['airline_sentiment'] == "negative")]
 
+
 @app.route('/')
 def index():
     """home page,with task2"""
@@ -47,6 +48,7 @@ def calculate_percentage(val, total):
     percent = np.round((np.divide(val, total) * 100), 2)
     return percent
 
+
 def data_creation(data, percent, class_labels, group=None):
     for index, item in enumerate(percent):
         data_instance = {}
@@ -66,23 +68,38 @@ def get_piechart_data_creative():
     data_creation(piechart_data, class_percent, airline_labels)
     return jsonify(piechart_data)
 
+
 @app.route('/get_barchart_data')
 def get_barchart_data():
-    tenure_labels = ['Bad Flight', 'Cancelled Flight', "Can't Tell", 'Customer Service Issue', 'Damaged Luggage',
-                     'Flight Attendant Complaints', 'Flight Booking Problems', 'Late Flight', 'longlines',
-                     'Lost Luggage']
     select_df = cleaned_df_creative[["airline", "negative_reason"]]
-
     airlines = ["American", "Delta", "Southwest", "United", "US Airways", "Virgin America"]
     barchart_data = []
+    _ = select_df.groupby('negative_reason').size().values
+    all_percent = calculate_percentage(_, np.sum(_))
+    reason_labels = []
+    reason_dict = {'Bad Flight': 'BadF', 'Cancelled Flight': 'CclF', "Can't Tell": 'CntT', 'Customer Service Issue': 'CSI',
+                   'Damaged Luggage': 'DmgL', 'Flight Attendant Complaints': 'FAC', 'Flight Booking Problems': 'FBP',
+                   'Late Flight': 'LatF', 'longlines': 'LgLi', 'Lost Luggage': 'Lost'}
+    for _, row in select_df.iterrows():
+        if row["negative_reason"] not in reason_labels:
+            reason_labels.append(row["negative_reason"])
+    short_label = []
+    for long in reason_labels:
+        short_label.append(reason_dict[long])
+    data_creation(barchart_data, all_percent, short_label, "All")
     for airline in airlines:
         airline_data = select_df[select_df['airline'] == airline]
         _ = airline_data.groupby('negative_reason').size().values
         airline_percent = calculate_percentage(_, np.sum(_))
-        data_creation(barchart_data, airline_percent, tenure_labels, airline)
-    _ = select_df.groupby('negative_reason').size().values
-    all_percent = calculate_percentage(_, np.sum(_))
-    data_creation(barchart_data, all_percent, tenure_labels, "All")
+        reason_labels = []
+        for _, row in airline_data.iterrows():
+            if row["negative_reason"] not in reason_labels:
+                reason_labels.append(row["negative_reason"])
+        short_label = []
+        for long in reason_labels:
+            short_label.append(reason_dict[long])
+        data_creation(barchart_data, airline_percent, short_label, airline)
+
     return jsonify(barchart_data)
 
 
