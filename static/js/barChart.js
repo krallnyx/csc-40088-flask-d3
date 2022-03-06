@@ -4,10 +4,10 @@ const margin = {top: 20, right: 10, bottom: 20, left: 20},
 width = 350 - margin.left - margin.right,
 height = 350 - margin.top - margin.bottom,
 barPadding = 7,
-graph_misc = {ylabel:4, xlabelH :4, title:9};
+graph_misc = {ylabel:4, xlabelH :4, title:12};
 
 // Setting the default group
-const group = "All";
+// const group = "All";
 
 // Function to get the percentage values  for a specific selected group from the whole dataset.
 function get_percentage(group, datasetBarChart){
@@ -19,7 +19,8 @@ function get_percentage(group, datasetBarChart){
     } return _;
 };
 
-function d3BarChart(datasetBarChart){
+function d3BarChart(datasetBarChart, group = "All"){
+    d3.select('#barChart svg').remove();
     defaultBarChart = get_percentage(group, datasetBarChart);
 
     const xScale = d3.scaleLinear()     // Barchart X axis scale

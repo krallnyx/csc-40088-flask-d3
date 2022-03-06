@@ -1,5 +1,13 @@
+//Set up SVG dimensions and properties
+const margin = {top: 20, right: 10, bottom: 20, left: 20},
+width = 350 - margin.left - margin.right,
+height = 350 - margin.top - margin.bottom,
+barPadding = 7,
+graph_misc = {ylabel:4, xlabelH :4, title:12};
+
 
 function updateBarChart(group, color, datasetBarChart){
+
     const currentBarChart = get_percentage(group, datasetBarChart);
 
     //Defining chart scale, same as the default bar chart
