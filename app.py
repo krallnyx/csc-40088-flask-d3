@@ -72,37 +72,17 @@ def get_barchart_data():
                      'Flight Attendant Complaints', 'Flight Booking Problems', 'Late Flight', 'longlines',
                      'Lost Luggage']
     select_df = cleaned_df_creative[["airline", "negative_reason"]]
-    # cleaned_df_creative['negative_reason'] = pd.cut(cleaned_df_creative.negative_reason, range(0, 81, 10), labels=tenure_labels)
-    # select_df = cleaned_df_creative[['tenure_group','Contract']]
-    american = select_df[select_df['airline'] == 'American']
-    delta = select_df[select_df['airline'] == 'Delta']
-    southwest = select_df[select_df['airline'] == 'Southwest']
-    united = select_df[select_df['airline'] == 'United']
-    us_airways = select_df[select_df['airline'] == 'US Airways']
-    virgin_america = select_df[select_df['airline'] == 'Virgin America']
-    _ = american.groupby('negative_reason').size().values
-    american_percent = calculate_percentage(_, np.sum(_))
-    _ = delta.groupby('negative_reason').size().values
-    delta_percent = calculate_percentage(_, np.sum(_))
-    _ = southwest.groupby('negative_reason').size().values
-    southwest_percent = calculate_percentage(_, np.sum(_))
-    _ = united.groupby('negative_reason').size().values
-    united_percent = calculate_percentage(_, np.sum(_))
-    _ = us_airways.groupby('negative_reason').size().values
-    us_airways_percent = calculate_percentage(_, np.sum(_))
-    _ = virgin_america.groupby('negative_reason').size().values
-    virgin_america_percent = calculate_percentage(_, np.sum(_))
+
+    airlines = ["American", "Delta", "Southwest", "United", "US Airways", "Virgin America"]
+    barchart_data = []
+    for airline in airlines:
+        airline_data = select_df[select_df['airline'] == airline]
+        _ = airline_data.groupby('negative_reason').size().values
+        airline_percent = calculate_percentage(_, np.sum(_))
+        data_creation(barchart_data, airline_percent, tenure_labels, airline)
     _ = select_df.groupby('negative_reason').size().values
     all_percent = calculate_percentage(_, np.sum(_))
-
-    barchart_data = []
     data_creation(barchart_data, all_percent, tenure_labels, "All")
-    data_creation(barchart_data, american_percent, tenure_labels, "American")
-    data_creation(barchart_data, delta_percent, tenure_labels, "Delta")
-    data_creation(barchart_data, southwest_percent, tenure_labels, "Southwest")
-    data_creation(barchart_data, united_percent, tenure_labels, "United")
-    data_creation(barchart_data, us_airways_percent, tenure_labels, "US Airways")
-    data_creation(barchart_data, virgin_america_percent, tenure_labels, "Virgin America")
     return jsonify(barchart_data)
 
 
