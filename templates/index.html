@@ -15,6 +15,7 @@
         <h2>CSC40088-Assessment 3, Arnaud Jeanroch</h2>
         <h3><u>Task 1, Create a python Flask application with three pages:</u></h3>
         <h5><b>Task 1.1</b> <span><a href="creative">Extension of the page from Assessment2</a> its code is on <a href="https://github.com/krallnyx/csc-40088-flask-d3">Github, flask-d3</a></span></h5>
+        <p>as a reference, you can see the <a href="advanced">complete dataset used for this exercise</a></p>
         <h5><b>Task 1.2</b> <span><a href="https://tranquil-lake-89740.herokuapp.com/">Page with WebSocket and 2 security features</a> its code is on <a href="https://github.com/krallnyx/csc40088-websockets">Github, websockets</a></span></h5>
         <hr>
         <h5><b>Task 1.3</b>Answers to the questions in <b>Task2:</b></h5>
@@ -24,7 +25,11 @@
         </h1>
         <h3>Question 2.1: What extra features have you added in Task 1.1, and why? </h3>
         <p>
-            Your answers.
+            In the previous version of this page I only had the pie chart graph, it was nice looking but I wanted to add a second graph displaying the negative reasons per airline.
+            In this one we can click on a slice of the pie chart and the graph will display at the bottom, making is easy to see, per airline, what is the most common reason for a negative review.
+            It is, in my opinion, a very helpful information. By default it displays the graph for all companies, on click on a slice it refines the display to show the viewer only the information for a specific company.
+            This graphs would be a lot more helpful with a larger dataset and it's been designed to handle any number of columns.
+            I'm confident any reader of this page interested on those data would find those graph useful.
         </p>
         <hr>
         <h3>Question 2.2: What are the security issues of Web Socket, and what can be done to secure Web Socket? You need to relate this to the security features you have implemented in Task 1.2.</h3>
@@ -40,7 +45,7 @@
             <li>There are also probably more, it's important to stay aware of the news</li>
         </ul>
             For this assessment, Heroku doesn't allow us to do much on the SSL side with the free tier so the two features I added for security are:<br>
-            -Input validation (in my opinion probably the most easy vulnerabilty to  use and the most damaging). Even thoug we don't use a Database on this exercise, it won't stay like that and without it, using SQL injection is just a child's play.<br>
+            -Input validation (in my opinion probably the most easy vulnerability to  use and the most damaging). Even though we don't use a Database on this exercise, it won't stay like that and without it, using SQL injection is just a child's play.<br>
             -Rate limiting. Denial of Service is very common nowadays and we'd experience it if we don't have a limiter, especially as we don't have authentication (which would have been time-consuming for the reviewers of this assessment).<br>
             Sources :<br>
             <a href ="https://devcenter.heroku.com/articles/websocket-security">Websocket security, by Heroku, 2021</a><br>
