@@ -68,7 +68,7 @@
 // };
 
 
-function updateBarChart(group = "All", color ="#757077", datasetBarChart, airline = "global"){
+function updateBarChart(group = "All", color ="#757077", datasetBarChart){
     d3.select('#barChart svg').remove();
     defaultBarChart = get_percentage(group, datasetBarChart);
 
@@ -93,7 +93,7 @@ function updateBarChart(group = "All", color ="#757077", datasetBarChart, airlin
         .attr('y', graph_misc.title)
         .attr('class','title')
         .attr('text-anchor', 'middle')
-        .text('Details of '+ airline + ' negative reviews');
+        .text('Details of '+ group + ' negative reviews');
 
     const visualization = bar.append('g')
         .attr("transform", "translate(" + margin.left + "," + (margin.top + graph_misc.ylabel) + ")");
