@@ -75,7 +75,7 @@ a {
 .slice {
     font-size: 8px;
     font-family: "Roboto Mono", monospace;
-    fill: white;
+    fill: black;
     font-weight: bold;   
     cursor: pointer;
 } 
